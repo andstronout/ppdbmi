@@ -101,7 +101,7 @@ class AdminDashboardController extends Controller
         $nomorUrut = str_pad($murid->id, 4, '0', STR_PAD_LEFT); // NPSN (misal: "20250017")
         $nomorIndukSiswa = $tahunMasuk . $nomorUrut;
         $murid->update([
-            'status' => 'Diterima',
+            'status' => 'Verified',
             'catatan' => null,
             'npsn' => $nomorIndukSiswa
         ]);
@@ -134,8 +134,7 @@ class AdminDashboardController extends Controller
         if ($filterPayment) {
             if ($filterPayment == 'Belum Bayar') {
                 $query->doesntHave('pembayaran');
-            }
-            else {
+            } else {
                 $query->whereHas('pembayaran', function ($q) use ($filterPayment) {
                     $q->where('status_bayar', $filterPayment);
                 });
