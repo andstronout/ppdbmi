@@ -14,7 +14,7 @@
                     <form action="{{ route('pendaftaran.cek') }}" method="GET" class="mb-4">
                         <label for="cariNik">Masukan NIK Murid</label>
                         <input class="form-control mb-3" type="text" name="cariNik" id="cariNik"
-                            placeholder="Masukan 16 digit NIK Murid..." value="{{ $nik ?? '' }}" required>
+                            placeholder="Masukan 16 digit NIK Murid..." value="{{ $nik ?? '' }}" maxlength="16" required>
                         <button class="btn btn-success" type="submit">Cari Status Murid</button>
                     </form>
 
@@ -78,4 +78,15 @@
         </div>
 
     </section>
+    <script>
+        $('#cariNik').on('input', function(){
+            let value = $(this).val().replace(/\D/g, '');
+                if (value) {
+                    $(this).val(parseInt(value, 10).toLocaleString('id-ID'))
+                } else {
+                    $(this).val('');
+                }
+            $('#cariNik').val(value)
+        })
+    </script>
 @endsection

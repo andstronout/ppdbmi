@@ -14,5 +14,6 @@
 <link href="{{ asset('admin_assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 <link href="{{ asset('admin_assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @stack('page-styles')

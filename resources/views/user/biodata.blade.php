@@ -63,7 +63,7 @@
                                     <div class="col-sm-6">
                                         <label for="nik">NIK Murid</label>
                                         <input type="text" class="form-control @error('nik') is-invalid @enderror"
-                                            id="nik" name="nik" value="{{ old('nik', $murid->nik ?? '') }}"
+                                            id="nik" name="nik" value="{{ old('nik', $murid->nik ?? '') }}" maxlength="16"
                                             required>
                                         @error('nik')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -141,7 +141,7 @@
                                     <input type="text" class="form-control @error('no_whatsapp') is-invalid @enderror"
                                         id="noWhatsapp" name="no_whatsapp"
                                         value="{{ old('no_whatsapp', $murid->no_whatsapp ?? '') }}"
-                                        placeholder="Contoh: 08123456789">
+                                        placeholder="Contoh: 08123456789" pattern="[0-9]*" maxlength="13">
                                     @error('no_whatsapp')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -327,4 +327,27 @@
             </div>
         </div>
     </div>
+    <script>
+        function validateNumberInput(input){
+            input.value = input.value.replace(/[^0-9]/g,'');
+        }
+        $('#noWhatsapp').on('input', function(e){
+            let value = $(this).val().replace(/\D/g, '');
+                if (value) {
+                    $(this).val(parseInt(value, 10).toLocaleString('id-ID'))
+                } else {
+                    $(this).val('');
+                }
+            $('#noWhatsapp').val(value)
+        })
+        $('#nik').on('input', function(){
+            let value = $(this).val().replace(/\D/g, '');
+                if (value) {
+                    $(this).val(parseInt(value, 10).toLocaleString('id-ID'))
+                } else {
+                    $(this).val('');
+                }
+            $('#nik').val(value)
+        })
+    </script>
 @endsection

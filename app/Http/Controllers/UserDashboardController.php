@@ -96,7 +96,7 @@ class UserDashboardController extends Controller
 
   public function showPembayaranForm()
   {
-    $murid = Murid::where('user_id', Auth::id())->first();
+    $murid = Murid::where('user_id', auth()->user()->id)->first();
     if (!$murid) {
       return redirect()->route('user.biodata')
         ->withErrors(['gagal' => 'Harap lengkapi biodata Anda terlebih dahulu sebelum melakukan pembayaran.']);
